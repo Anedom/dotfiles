@@ -5,6 +5,16 @@
 
 " BASIC:
     set nocompatible    " disable vi compatibility
+    filetype off    " required
+    set rtp+=~/.vim/bundle/Vundle.vim   " vundle path
+    call vundle#begin()
+    Plugin 'VundleVim/Vundle.vim'   " vundle manages vundle
+    Plugin 'tpope/vim-commentary'   " commentary plugin
+    Plugin 'tommcdo/vim-lion'   " lion plugin
+    Plugin 'tpope/vim-surround' " surround plugin
+    Plugin 'tpope/vim-fugitive' " fugitive plugin
+    Plugin 'scrooloose/nerdtree'    " nerdtree plugin
+    call vundle#end()
     syntax enable   " enable syntax processing
     filetype plugin on  " enable plugin files 
     filetype indent on  " load type specific indent files
@@ -46,11 +56,6 @@
 " LEADER:
     let mapleader=","   " leader is comma
     let g:mapleader="," " same
-
-" PLUGINS:
-    " pathogen plugin manager
-    call pathogen#infect()
-    call pathogen#helptags()
 
 " BACKUPS:
     set nobackup    " disable backups
