@@ -3,7 +3,7 @@
     " Date: 17/02/2017
     " Version: 1.0.0
 
-" BASIC:
+" VUNDLE:
     set nocompatible    " disable vi compatibility
     filetype off    " required
     set rtp+=~/.vim/bundle/Vundle.vim   " vundle path
@@ -14,7 +14,11 @@
     Plugin 'tpope/vim-surround' " surround plugin
     Plugin 'tpope/vim-fugitive' " fugitive plugin
     Plugin 'scrooloose/nerdtree'    " nerdtree plugin
+    Plugin 'pangloss/vim-javascript'    " JS plugin
+    Plugin 'mxw/vim-jsx'    " JSX plugin
     call vundle#end()
+
+" BASIC: 
     syntax enable   " enable syntax processing
     filetype plugin on  " enable plugin files 
     filetype indent on  " load type specific indent files
@@ -65,7 +69,15 @@
 " STATUS LINE:
     set cmdheight=2 " cmd height
     set laststatus=2    " always show status line
-    set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+    set statusline=
+    set statusline+=%#todo#
+    set statusline+=\ %<%f
+    set statusline+=\ [%{&ff}/%Y]
+    set statusline+=%*
+    set statusline+=\ CWD:\ %r%{getcwd()}
+    set statusline+=%=
+    set statusline+=FLAGS:\ [%n%h%m%r%w]
+    set statusline+=\ \ LINE:\ %l
 
 " SNIPPETS:
     " base HTML code
@@ -74,19 +86,41 @@
 " MISC:
     " toggle paste mode
     map <leader>pp :setlocal paste!<cr>
+    
+    " Smart way to move between windows
+    map <C-j> <C-W>j
+    map <C-k> <C-W>k
+    map <C-h> <C-W>h
+    map <C-l> <C-W>l
+    
+    " allows cursor change in tmux mode
+    if exists('$TMUX')
+        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    else
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    endif
+   
+    " fast saves
+    nmap <leader>w :w!<cr>
+
+    " easy escaping to normal model
+    imap jj <esc>
+
+    " autoquit if only nerdtree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " HELPER FUNCTIONS:
-    " Returns true if paste mode is enabled 
-    function! HasPaste()
-        if &paste
-            return 'PASTE MODE  '
+    " Windows Compatible
+    if has('win32') || has('win64')
+        set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
     endif
-        return ''
-    endfunction
 
-     " Windows Compatible
-        " On Windows, also use '.vim' instead of 'vimfiles'
-        " this makes synchronization across (heterogeneous) systems easier.
-        if has('win32') || has('win64')
-            set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-        endif
+" NERDTREE:
+    " keymaps
+    map <leader>nn :NERDTreeToggle<CR>
+    map <leader>nf :NERDTreeFind<CR>
+
+    " position
+    let g:NERDTreeWinPos = "right"
