@@ -1,7 +1,7 @@
 " ABOUT:
     " Maintainer: Marco "Anedom" Modena
     " Date: 17/02/2017
-    " Version: 2.0.0
+    " Version: 2.1
 
 " VUNDLE:
     set nocompatible    " disable vi compatibility
@@ -16,6 +16,7 @@
     Plugin 'pangloss/vim-javascript'    " JS plugin
     Plugin 'mxw/vim-jsx'    " JSX plugin
     Plugin 'vim-syntastic/syntastic'    " syntastic plugin
+    Plugin 'tpope/vim-surround' " surround plugin
     call vundle#end()
 
 " BASIC: 
@@ -127,4 +128,17 @@
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0    
+    let g:syntastic_check_on_wq = 0   
+
+" FUGITIVE:
+    nnoremap <leader>gd :Gdiff<cr>
+    nnoremap <leader>gs :Gstatus<cr>
+    nnoremap <leader>gw :Gwrite<cr>
+    nnoremap <leader>ga :Gadd<cr>
+    nnoremap <leader>gb :Gblame<cr>
+    nnoremap <leader>gci :Gcommit<cr>
+    nnoremap <leader>ge :Gedit<cr>
+    nnoremap <leader>gm :Gmove
+    nnoremap <leader>gr :Gread<cr>
+    nnoremap <leader>grm :Gremove<cr>
+    nnoremap <leader>gp :Git push
