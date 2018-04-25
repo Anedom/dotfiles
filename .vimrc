@@ -1,7 +1,7 @@
 " ABOUT:
     " Maintainer: Marco "Anedom" Modena
     " Date: 17/02/2017
-    " Version: 1.0.0
+    " Version: 2.0.0
 
 " VUNDLE:
     set nocompatible    " disable vi compatibility
@@ -10,12 +10,12 @@
     call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'   " vundle manages vundle
     Plugin 'tpope/vim-commentary'   " commentary plugin
-    Plugin 'tommcdo/vim-lion'   " lion plugin
-    Plugin 'tpope/vim-surround' " surround plugin
     Plugin 'tpope/vim-fugitive' " fugitive plugin
+    Plugin 'tpope/vim-git'  " git plugin
     Plugin 'scrooloose/nerdtree'    " nerdtree plugin
     Plugin 'pangloss/vim-javascript'    " JS plugin
     Plugin 'mxw/vim-jsx'    " JSX plugin
+    Plugin 'vim-syntastic/syntastic'    " syntastic plugin
     call vundle#end()
 
 " BASIC: 
@@ -67,17 +67,15 @@
     set nowb    " same
 
 " STATUS LINE:
-    set cmdheight=2 " cmd height
-    set laststatus=2    " always show status line
-    set statusline=
-    set statusline+=%#todo#
-    set statusline+=\ %<%f
-    set statusline+=\ [%{&ff}/%Y]
-    set statusline+=%*
-    set statusline+=\ CWD:\ %r%{getcwd()}
-    set statusline+=%=
-    set statusline+=FLAGS:\ [%n%h%m%r%w]
-    set statusline+=\ \ LINE:\ %l
+    set laststatus=2    " always show sl
+    set statusline= " starts sl
+    set statusline+=%<%f\   " filename
+    set statusline+=[%{getcwd()}]\  " cwd
+    set statusline+=%w%h%m%r\   "flags
+    set statusline+=%{fugitive#statusline()}\   " adds git info
+    set statusline+=[%{&ff}/%Y]\    " filetype
+    set statusline+=%=  " devider
+    set statusline+=%-14.(line:%l,col:%c%V%)\ %p%%
 
 " SNIPPETS:
     " base HTML code
@@ -124,3 +122,9 @@
 
     " position
     let g:NERDTreeWinPos = "right"
+
+" SYNTASTIC:
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0    
