@@ -1,7 +1,7 @@
 " ABOUT:
     " Maintainer: Marco "Anedom" Modena
     " Date: 17/02/2017
-    " Version: 2.1
+    " Version: 2.2
 
 " VUNDLE:
     set nocompatible    " disable vi compatibility
@@ -17,6 +17,8 @@
     Plugin 'mxw/vim-jsx'    " JSX plugin
     Plugin 'vim-syntastic/syntastic'    " syntastic plugin
     Plugin 'tpope/vim-surround' " surround plugin
+    Plugin 'terryma/vim-multiple-cursors'
+    Plugin 'elzr/vim-json'  " JSON Plugin
     call vundle#end()
 
 " BASIC: 
@@ -82,6 +84,19 @@
     " base HTML code
     nnoremap ,html :-1read /home/anedom/.vim/snippets/basehtml.html<CR>5jwf>a
 
+" AUTOCOMMANDS:
+    " JSON:
+    augroup json_autocmd
+        autocmd!
+        autocmd! BufRead,BufNewFile *.json set filetype=json
+        autocmd FileType json set autoindent
+        autocmd FileType json set formatoptions=tcq2l
+        autocmd FileType json set textwidth=78 shiftwidth=2
+        autocmd FileType json set softtabstop=2 tabstop=8
+        autocmd FileType json set expandtab
+        autocmd FileType json set foldmethod=syntax
+    augroup END
+
 " MISC:
     " toggle paste mode
     map <leader>pp :setlocal paste!<cr>
@@ -109,6 +124,10 @@
 
     " autoquit if only nerdtree
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    
+    " better movement
+    nnoremap j gj
+    nnoremap k gk
 
 " HELPER FUNCTIONS:
     " Windows Compatible
