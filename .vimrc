@@ -21,15 +21,15 @@
     Plugin 'elzr/vim-json'  " JSON Plugin
     call vundle#end()
 
-" BASIC: 
+" BASIC:
     syntax enable   " enable syntax processing
-    filetype plugin on  " enable plugin files 
+    filetype plugin on  " enable plugin files
     filetype indent on  " load type specific indent files
-    set autoread    " update when file is changed outside   
+    set autoread    " update when file is changed outside
     set history=500 " history of 500 memory
     set mousehide   " hides mouse when typing
 
-" STYLE:    
+" STYLE:
     set tabstop=4   " num of spaces to tab when visualizing
     set softtabstop=4   " num of spaces to tab when editing
     set expandtab   " changes tabs to (4) spaces
@@ -47,6 +47,7 @@
     set showmatch   " show equivalent {[(
     set foldcolumn=1    " add space to the left
     set background=dark
+    set t_Co=256
 
 " SEARCH:
     set incsearch   " search as entered
@@ -59,7 +60,7 @@
     set foldenable  " enable folding
     set foldlevelstart=10   " opens most folds by default
     set foldmethod=indent   " indent based fold
-   
+
 " LEADER:
     let mapleader=","   " leader is comma
     let g:mapleader="," " same
@@ -97,16 +98,22 @@
         autocmd FileType json set foldmethod=syntax
     augroup END
 
+    " Remove trailing whitespaces
+    augroup remove_trailing_whitespace
+        autocmd!
+        autocmd BufWritePre * :%s/\s\+$//e
+    augroup end
+
 " MISC:
     " toggle paste mode
     map <leader>pp :setlocal paste!<cr>
-    
+
     " Smart way to move between windows
     map <C-j> <C-W>j
     map <C-k> <C-W>k
     map <C-h> <C-W>h
     map <C-l> <C-W>l
-    
+
     " allows cursor change in tmux mode
     if exists('$TMUX')
         let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -115,7 +122,7 @@
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     endif
-   
+
     " fast saves
     nmap <leader>w :w!<cr>
 
@@ -124,7 +131,7 @@
 
     " autoquit if only nerdtree
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    
+
     " better movement
     nnoremap j gj
     nnoremap k gk
@@ -147,7 +154,7 @@
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0   
+    let g:syntastic_check_on_wq = 0
 
 " FUGITIVE:
     nnoremap <leader>gd :Gdiff<cr>
