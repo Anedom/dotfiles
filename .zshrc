@@ -1,6 +1,5 @@
 # MISC:
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export ZSH=/home/anedom/.oh-my-zsh
+export PATH=$HOME/bin:/usr/local/bin:$PATH export ZSH=/home/anedom/.oh-my-zsh
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 bindkey -v
@@ -26,6 +25,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias sp="sudo pacman"
+alias rr="rm -r"
 
 # PLUGINS:
 plugins=(archlinux extract git git-extras svn tmux vi-mode)
