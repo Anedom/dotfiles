@@ -48,6 +48,7 @@
     set foldcolumn=1    " add space to the left
     set background=dark
     set t_Co=256
+    set noshowmode
 
 " SEARCH:
     set incsearch   " search as entered
@@ -73,12 +74,13 @@
 " STATUS LINE:
     set laststatus=2    " always show sl
     set statusline= " starts sl
-    set statusline+=%<%f\   " filename
+    set statusline+=[%{toupper(mode())}]
+    set statusline+=\ %f\   " filename
     set statusline+=[%{getcwd()}]\  " cwd
-    set statusline+=%w%h%m%r\   "flags
+    set statusline+=%m%r\   "flags
     set statusline+=%{fugitive#statusline()}\   " adds git info
-    set statusline+=[%{&ff}/%Y]\    " filetype
     set statusline+=%=  " devider
+    set statusline+=[%{&ff}/%Y]\    " filetype
     set statusline+=%-14.(line:%l,col:%c%V%)\ %p%%
 
 " SNIPPETS:
