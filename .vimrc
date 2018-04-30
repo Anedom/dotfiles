@@ -19,6 +19,8 @@
     Plugin 'tpope/vim-surround' " surround plugin
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'elzr/vim-json'  " JSON Plugin
+    Plugin 'SirVer/ultisnips'   " Snippets Plugin
+    Plugin 'honza/vim-snippets' " ...
     call vundle#end()
 
 " BASIC:
@@ -170,3 +172,8 @@
     nnoremap <leader>gr :Gread<cr>
     nnoremap <leader>grm :Gremove<cr>
     nnoremap <leader>gp :Git push
+
+" UTILSNIPS:
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
