@@ -26,6 +26,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias sp="sudo pacman"
 alias rr="rm -r"
+alias c="clear"
 
 # PLUGINS:
 plugins=(archlinux extract git git-extras svn tmux vi-mode)
