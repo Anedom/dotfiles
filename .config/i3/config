@@ -171,3 +171,4 @@ assign [class="Spotify"] $ws8
 assign [class="discord"] $ws9
 assign [class="TelegramDesktop"] $ws9
 assign [class="Pidgin"] $ws9
+assign [class="KeePass2"] $ws10
