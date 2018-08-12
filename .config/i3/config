@@ -166,7 +166,7 @@ bindsym $mod+shift+x exec i3lock --color "$black"
 
 # Binds apps to windows
 assign [class="Firefox"] $ws2
-assign [class="Xfce4-terminal"] $ws3
+assign [class="urxvt"] $ws3
 assign [class="Spotify"] $ws8
 assign [class="discord"] $ws9
 assign [class="TelegramDesktop"] $ws9
